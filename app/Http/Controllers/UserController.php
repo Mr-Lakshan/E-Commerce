@@ -45,14 +45,14 @@ class UserController extends Controller
         );
     }
 
-    public function users(): View
+    public function users()
     {
-        $users = Users::all();
+        $users = User::all();
 
         return view('auth.users', compact('users'));
     }
 
-    public function edit(User $user): View
+    public function edit(User $user)
     {
         return view('auth.edit', compact('user'));
     }
