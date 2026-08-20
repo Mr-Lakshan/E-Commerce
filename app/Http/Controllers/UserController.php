@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\View;
 
 class UserController extends Controller
 {
@@ -69,6 +68,19 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'mothername' => 'required|string|max:255',
+            'fathername' => 'required|string|max:255',
+            'email' => 'required|email',
+            'dob' => 'required|date',
+            'address' => 'required|string',
+            'state' => 'required|string',
+            'city' => 'required|string',
+            'pincode' => 'required|integer',
+            'gender' => 'required|string',
+        ]);
+
         $user->update($validated);
 
         return redirect('/users')->with('success', 'User updated sucessfully');
