@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 //     return view('welcome');
 // });
 
+Route::get('/', [UserController::class,'login']);
 Route::get('/register', [UserController::class,'register']);
 Route::get('/users', [UserController::class,'users']);
 Route::post('/register', [UserController::class,'store']);

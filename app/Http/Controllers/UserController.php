@@ -56,7 +56,7 @@ class UserController extends Controller
         return view('auth.edit', compact('user'));
     }
 
-    public function delete(User $user)
+    public function destroy(User $user)
     {
         $user->delete();
 
@@ -69,7 +69,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'mothername' => 'required|string|max:255',
             'fathername' => 'required|string|max:255',
             'email' => 'required|email',
@@ -81,8 +82,16 @@ class UserController extends Controller
             'gender' => 'required|string',
         ]);
 
+        $validated['name'] = $validated['first_name'].' '.$validated['last_name'];
+
+        unset($validated['first_name']);
+        unset($validated['last_name']);
         $user->update($validated);
 
         return redirect('/users')->with('success', 'User updated sucessfully');
+    }
+
+    public function login(){
+        return view('auth.login');
     }
 }
