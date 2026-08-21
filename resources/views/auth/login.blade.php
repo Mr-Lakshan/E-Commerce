@@ -38,7 +38,7 @@
                                             </ul>
                                         </div>
                                     @endif
-                                    <form>
+                                    <form action="/login" method="POST">
                                         @csrf
                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
@@ -50,13 +50,13 @@
 
                                         <div data-mdb-input-init class="form-outline mb-4">
                                             <input type="email" id="email"
-                                                class="form-control form-control-lg" />
+                                                class="form-control form-control-lg" name="email"/>
                                             <label class="form-label" for="email">Email address</label>
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
                                             <input type="password" id="password"
-                                                class="form-control form-control-lg" />
+                                                class="form-control form-control-lg" name="password"/>
                                             <label class="form-label" for="password">Password</label>
                                         </div>
 

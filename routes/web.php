@@ -7,10 +7,16 @@ use App\Http\Controllers\UserController;
 //     return view('welcome');
 // });
 
-Route::get('/', [UserController::class,'login']);
+Route::get('login', [UserController::class,'login'])->name('login');
+Route::post('/login', [UserController::class,'checklogin']);
+
+Route::middleware('auth')->group(function ()  {
+
 Route::get('/register', [UserController::class,'register']);
 Route::get('/users', [UserController::class,'users']);
 Route::post('/register', [UserController::class,'store']);
 Route::get('/users/{user}/edit', [UserController::class,'edit']);
 Route::delete('/users/{user}', [UserController::class,'destroy']);
 Route::put('/users/{user}', [UserController::class,'update']);
+
+});
